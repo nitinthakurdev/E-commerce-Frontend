@@ -204,7 +204,6 @@ const Home = () => {
     ]
     return (
         <div>
-         <Headers/>
          <Banner/>
          <Offers/>
          <CategoryBanners value={value} />
@@ -212,7 +211,7 @@ const Home = () => {
          <AdvBanner/>
          <ProductCard data={data2} />
          <NewsLetter />
-         <Footer />
+         
         </div>
     )
 }
