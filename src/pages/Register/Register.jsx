@@ -1,10 +1,14 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation} from 'react-router-dom'
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 import * as yup from "yup"
+import { useAuthContext } from '../../context';
 
 const Register = () => {
+  const {RegisterHandler} = useAuthContext()
   const location = useLocation()
+  const [showPassword, setShowPassword] = useState(false)
   const SellerLogin = () => {
     const temp = location.pathname.split("/")
     if(temp.length === 3){
@@ -21,10 +25,12 @@ const Register = () => {
   }) 
 
   const {values,errors,touched,handleBlur,handleChange,handleSubmit} = useFormik({
-    initialValues:{fullName:null,username:null,email:null,password:null},
+    initialValues:{fullName:"",username:"",email:"",password:""},
     validationSchema:registerValidation,
     onSubmit:(value)=>{
-      console.log(value)
+      let data
+      SellerLogin() === "seller" ? data = {...value,type:"seller"} : data = {...value,type:"user"}
+      RegisterHandler(data)
     }
   })
   
@@ -63,17 +69,17 @@ const Register = () => {
           
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 relative ">
             <label htmlFor="password" className="block text-gray-600">Password</label>
-            <input type="password" id="password" name="password" value={values.password} onChange={handleChange} onBlur={handleBlur} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autoComplete="off" />
+            <input type={showPassword ? "text" : "password"} id="password" name="password" value={values.password} onChange={handleChange} onBlur={handleBlur} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autoComplete="off" />
+            <div className='absolute top-10 right-5  cursor-pointer ' onClick={() => setShowPassword(!showPassword)} >
+                {showPassword ? <VscEyeClosed /> : <VscEye />}
+              </div>
             {errors.password && touched.password ? <span className='text-sm text-red-500' >{errors.password}</span> : null}
           
           </div>
 
-          <div className="mb-4 flex items-center">
-            <input type="checkbox" id="remember" name="remember" className="text-blue-500" />
-            <label htmlFor="remember" className="text-gray-600 ml-2">Remember Me</label>
-          </div>
+          
 
           <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"  >Sign Up</button>
         </form>
