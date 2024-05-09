@@ -29,7 +29,7 @@ const BasicDetail = () => {
                     starDimension="20px"
                     starSpacing="3px"
                 /></span>
-                <ul className='py-5 flex flex-col gap-7' >
+                <ul className='py-5 flex flex-col gap-5' >
                     <li>Price: ₹5000</li>
                     <li>Type : Classic </li>
                     <li>Material : Plastic</li>
@@ -37,6 +37,11 @@ const BasicDetail = () => {
                     <li>Warranty : 2 years full warranty</li>
                     <li>Protection : Refund policy</li>
                 </ul>
+                <div className='flex gap-7 items-center' >
+                    <button className='border-2 py-2 px-10 font-medium text-lg rounded-lg bg-yellow-300 text-white hover:bg-yellow-400' >Buy Now</button>
+                    <button className='border-2 py-2 px-10 font-medium text-lg rounded-lg bg-amber-400 text-white hover:bg-amber-500' >Add to Cart</button>
+                    
+                </div>
             </div>
         </div>
     )

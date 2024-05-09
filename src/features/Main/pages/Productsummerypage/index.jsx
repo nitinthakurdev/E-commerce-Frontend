@@ -88,7 +88,7 @@ const ProductSummery = () => {
       <div className="flex justify-between py-3" >
         <Filter/>
         <div className=" w-[80%]" >
-        <ListView setList={setList} />
+        <ListView setList={setList} list={list}/>
         {list ? <ProductList data={data} /> :
         <ProductGrid data={data}  />}
         </div>

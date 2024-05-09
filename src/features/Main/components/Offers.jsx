@@ -42,7 +42,7 @@ const Offers = () => {
 
     ]
     return (
-        <div className=' py-3 px-10 bg-slate-100'>
+        <div className=' py-3  bg-slate-100'>
             <div className='bg-white flex ' >
                 <div className='p-5 w-[20%] ' >
                     <h2 className='font-medium text-lg ' >Deals and Offers</h2>

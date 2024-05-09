@@ -3,10 +3,10 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react
 
 const Footer = () => {
     return (
-        <div className='px-20  bg-slate-100 py-10' >
+        <div className='px-10  bg-slate-100 py-10' >
             <div className='grid grid-cols-6 gap-5' >
                 <div>
-                    <img src="./brand-logo.png" alt="logo" />
+                    <img src="../brand-logo.png" alt="logo" />
                     <h2 className='font-medium text-gray-600' >Best information about the company Lorem ipsum dolor sit amet.</h2>
                     <div className='text-xl flex gap-3 py-3 ' >
                         <span className='text-gray-600  ' >< FaFacebook className="hover:scale-110" /></span>

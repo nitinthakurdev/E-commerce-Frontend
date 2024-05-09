@@ -2,7 +2,7 @@ import React from 'react'
 import { VscThreeBars } from "react-icons/vsc";
 import { PiGridFourFill } from "react-icons/pi";
 
-const ListView = ({setList}) => {
+const ListView = ({setList,list}) => {
   return (
     <div className='px-2 py-2 border border-gray-400 rounded-md flex justify-between items-center' >
         <div>
@@ -15,10 +15,10 @@ const ListView = ({setList}) => {
                 <option>english</option>
             </select>
             <div className='flex items-center border-2 border-gray-500 rounded-md text-2xl overflow-hidden' >
-                <span className='px-1 border-r cursor-pointer hover:bg-slate-200 ' onClick={()=>setList(false)} >
+                <span className={`px-1 border-r cursor-pointer hover:bg-slate-200 ${!list ? "bg-slate-200" : ""} `} onClick={()=>setList(false)} >
                 <PiGridFourFill />
                 </span>
-                <span className='px-1 border-l cursor-pointer hover:bg-slate-200 ' onClick={()=>setList(true)}  >
+                <span className={`px-1 border-l cursor-pointer hover:bg-slate-200 ${list ? "bg-slate-200" : ""} `} onClick={()=>setList(true)}  >
                 <VscThreeBars />
                 </span>
             </div>

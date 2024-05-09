@@ -1,14 +1,17 @@
 import React from "react";
-import { FaUser, FaShoppingCart, FaHeart } from "react-icons/fa";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
 
 const Headers = () => {
+    const location = useLocation()
+    location.pathname.split("/")[1]
     return (
         <>
             <nav >
                 <div className="flex items-center justify-between py-4 px-10">
                     <div>
-                        <img src="./brand-logo.png" />
+                        <img src="../brand-logo.png" />
                     </div>
                     <div className="border-2 border-blue-500 h-full w-[35%] rounded-md ">
                         <input
@@ -21,18 +24,15 @@ const Headers = () => {
                         </button>
                     </div>
                     <div className="flex items-center justify-center gap-7 text-gray-500 text-lg " >
-                        <div className=" flex flex-col items-center"  >
+                        <Link to="/profile" className=" flex flex-col items-center"  >
                             <FaUser />
                             <span className="text-xs">Profie</span>
-                        </div>
-                        <div className=" flex flex-col items-center"  >
+                        </Link>
+                        <Link to="/cart" className=" flex flex-col items-center"  >
                             <FaShoppingCart />
                             <span className="text-xs"> My Cart</span>
-                        </div>
-                        <div className=" flex flex-col items-center"  >
-                            <FaHeart />
-                            <span className="text-xs">Orders</span>
-                        </div>
+                        </Link>
+                        
                         <div className=" flex flex-col items-center"  >
                             <MdMessage />
                             <span className="text-xs">message</span>
@@ -41,7 +41,7 @@ const Headers = () => {
                 </div>
 
                 <hr/>
-                <div>
+                {location.pathname.split("/")[1] === "cart" ? null: <div>
                     <ul className="flex justify-between items-center py-4 px-10">
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer " >All Category</li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Mobile & Tablets </li>
@@ -52,7 +52,7 @@ const Headers = () => {
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Furniture</li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Top Offer</li>
                     </ul>
-                </div>
+                </div>}
                 <hr/>
             </nav>
         </>

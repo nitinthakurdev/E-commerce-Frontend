@@ -30,7 +30,7 @@ const Banner = () => {
         },
     };
     return (
-        <div className="py-4 px-10">
+        <div className="py-4 ">
             <Carousel
                 responsive={responsive}
                 autoPlay={true}
@@ -59,7 +59,7 @@ export default Banner;
 export const AdvBanner = () => {
     return (
         <>
-        <div className=" relative px-10 py-4" >
+        <div className=" relative  py-4" >
             <img className="w-full" src="./background/banners.png" />
             <div className="absolute top-[50%] left-[50%]  translate-x-[-50%] translate-y-[-50%] " >
                 <h2 className="text-4xl font-medium text-white" >An easy way to send requests to all suppliers</h2>

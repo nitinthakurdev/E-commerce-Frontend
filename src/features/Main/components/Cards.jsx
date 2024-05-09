@@ -23,7 +23,7 @@ export const OfferCard = ({ data }) => {
 
 export const ProductCard = ({ data }) => {
   return (
-    <div className="px-10 py-5" >
+    <div className=" py-5" >
         <h2 className="font-medium text-2xl py-4 " >Recommended items</h2>
       <div className=" grid grid-cols-5 gap-5">
         {data.map((item) => {

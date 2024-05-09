@@ -203,7 +203,7 @@ const Home = () => {
 
     ]
     return (
-        <div>
+        <div className='px-10' >
          <Banner/>
          <Offers/>
          <CategoryBanners value={value} />
