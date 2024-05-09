@@ -5,14 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 
 const Headers = () => {
     const location = useLocation()
-    location.pathname.split("/")[1]
+    const path = location.pathname.split("/")[1]
     return (
         <>
             <nav >
                 <div className="flex items-center justify-between py-4 px-10">
-                    <div>
+                    <Link to="/" >
                         <img src="../brand-logo.png" />
-                    </div>
+                    </Link>
                     <div className="border-2 border-blue-500 h-full w-[35%] rounded-md ">
                         <input
                             type="text"
@@ -41,7 +41,7 @@ const Headers = () => {
                 </div>
 
                 <hr/>
-                {location.pathname.split("/")[1] === "cart" ? null: <div>
+                {path === "cart" || path === "profile" ? null:  <div>
                     <ul className="flex justify-between items-center py-4 px-10">
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer " >All Category</li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Mobile & Tablets </li>

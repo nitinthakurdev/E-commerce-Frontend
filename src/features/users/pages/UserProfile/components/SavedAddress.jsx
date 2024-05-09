@@ -1,44 +1,27 @@
 import React, { useState } from 'react'
+import AddressForm from '../../../components/AddressForm'
 
 const SavedAddress = () => {
-  const [edit,setEdit] = useState(true)
+  const [showAddress,setShowAddress] = useState(false)
   return (
     <div className='py-5 w-[50%] ' >
       <div>
-      <h2 className='font-medium text-2xl text-center pb-10 flex items-center justify-center' > <img src="../location.jpg" className='h-20 w-20' alt="" /> Saved Address</h2>
-        <div className='flex flex-col gap-10'>
-          <div className=' flex items-center gap-10  ' >
-            <input type="text"  placeholder='Full Name' disabled={edit} className='border-2  w-[40%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 ' />
-            <input type="text" placeholder='username' disabled className='border-2 w-[40%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 ' />
+      <h2 className='font-medium text-2xl text-center pb-10 flex items-center justify-center' > <img src="../location.jpg" className='h-20 w-28' alt="" /> Saved Address</h2>
+        
+        <div className='py-2 bg-slate-100 px-5 rounded-lg '  >
+          <div className='flex gap-3 py-2' >Nitin <span className='bg-gray-200 py-1 px-2 rounded-md' >Home</span></div>
+          <div className='flex gap-3 ' >
+            <span>1366, </span> <span>Shona road palwal , </span> <span>
+              Palwal(city)
+            </span>
+            <span>
+              Haryana(state)
+            </span>
           </div>
-          <div >
-            <input type="text" placeholder="Email" disabled className='border-2 w-[85%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 '  />
-          </div>
-          <div className=' flex items-center  gap-10  '>
-            <input type="number"  placeholder='Phone Number' disabled={edit} className='border-2 w-[40%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 ' />
-            <input type="date" placeholder='DOB' disabled={edit} className='border-2 w-[40%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 ' />
-          </div>
-          <div className=' flex items-center  '>
-            <select name="" id="" disabled={edit} className='border-2 w-[85%] py-1 text-lg rounded-md px-3 focus:outline-indigo-600 '>
-              <option value="none">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Others">Others</option>
-            </select>
-          </div>
-          <div className=' flex items-center gap-10  '>
-            {
-              edit ? 
-              <button className='border-2 py-1 px-3 text-gray-500 hover:bg-blue-500  hover:text-white font-medium rounded-md' onClick={()=>setEdit(false)} >Edit</button>
-              :
-              <>
-               <button className='border-2 py-1 px-3 text-gray-500 hover:bg-blue-500 hover:text-white font-medium rounded-md' >Save</button>
-            <button className='border-2 py-1 px-3 text-gray-500 hover:bg-gray-200  font-medium rounded-md' onClick={()=>setEdit(true)} >Cancel</button>
-              </>
-            }
-           
-          </div>
+          <p>9138257533</p>
         </div>
+        <button className='bg-blue-400 text-white hover:bg-blue-600 w-full my-4 text-xl py-1 rounded-lg ' onClick={()=>setShowAddress(!showAddress)} >Add a new Address</button>
+        {showAddress ? <AddressForm setShowAddress={setShowAddress}/> : null}
       </div>
     </div>
   )

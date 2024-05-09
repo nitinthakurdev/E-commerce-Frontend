@@ -54,30 +54,30 @@ const Filter = () => {
                 <hr />
                 <div className=" p-3" >
                     <h2 className="py-2 font-medium text-lg" >Condition</h2>
-                   
 
-                        <div>
-                            <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                <input type="radio" name="Country" />
-                                <span> Any</span>
-                            </label>
-                            <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                <input type="radio" name="Country" />
-                                <span> Refurbished</span>
-                            </label>
-                            <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                <input type="radio" name="Country" />
-                                <span> Brand New </span>
-                            </label>
-                            <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                <input type="radio" name="Country" />
-                                <span> Old Item</span>
-                            </label>
+
+                    <div>
+                        <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                            <input type="radio" name="Country" />
+                            <span> Any</span>
+                        </label>
+                        <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                            <input type="radio" name="Country" />
+                            <span> Refurbished</span>
+                        </label>
+                        <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                            <input type="radio" name="Country" />
+                            <span> Brand New </span>
+                        </label>
+                        <label className="flex gap-3 bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                            <input type="radio" name="Country" />
+                            <span> Old Item</span>
+                        </label>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div className=" p-3" >
-                    <h2 className="py-2 font-medium text-lg" >Rating</h2>       
+                    <h2 className="py-2 font-medium text-lg" >Rating</h2>
                 </div>
             </aside>
         </>
