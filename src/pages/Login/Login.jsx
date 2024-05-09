@@ -1,13 +1,15 @@
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import * as yup from "yup"
 import { useAuthContext } from '../../context'
 import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
 const Login = () => {
-  const { LoginHandler } = useAuthContext()
+  const { LoginHandler ,AuthorizationToken} = useAuthContext()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  console.log(AuthorizationToken)
 
 
 
@@ -23,6 +25,12 @@ const Login = () => {
       LoginHandler(value)
     }
   })
+  useEffect(()=>{
+    if(AuthorizationToken){
+      navigate('/')
+    }
+
+},[AuthorizationToken])
 
   return (
     <div>
@@ -71,9 +79,11 @@ const Login = () => {
           <div className="mt-6 text-blue-500 text-center">
             <Link to="/register" className="hover:underline"  >Sign up Here</Link>
           </div>
+
           <div className="mt-6 text-blue-500 text-center">
-            <Link to="/register/seller" className="hover:underline">Becoume a seller</Link>
+            <Link to="/" className="hover:underline"  >Back to Home</Link>
           </div>
+          
 
         </div>
       </div>

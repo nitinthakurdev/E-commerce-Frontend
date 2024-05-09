@@ -1,13 +1,17 @@
 import React from 'react'
 import { FaRegEdit } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { RiCouponLine } from "react-icons/ri";
+import { TbLogout2 } from "react-icons/tb";
+import { useAuthContext } from '../../../../../context';
 
 const SideBar = () => {
+    const navigate = useNavigate()
+    const {LogoutHandler} = useAuthContext()
     return (
         <>
             <aside className=" text-black bg-gray-50 w-64 min-h-screen p-4">
@@ -42,6 +46,10 @@ const SideBar = () => {
                         <RiCouponLine />
                         My Rewards
                     </Link>
+                    <button  className='text-lg font-medium flex items-center gap-3 hover:bg-slate-100 px-3 rounded-md py-1 ' onClick={LogoutHandler} >
+                        <TbLogout2 />
+                        Logout
+                    </button>
                 </div>
             </aside>
         </>

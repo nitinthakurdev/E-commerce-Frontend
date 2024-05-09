@@ -2,8 +2,11 @@ import React from "react";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import { AiFillShop } from "react-icons/ai";
+import { useAuthContext } from "../../../context";
 
 const Headers = () => {
+    const {AuthorizationToken} = useAuthContext()
     const location = useLocation()
     const path = location.pathname.split("/")[1]
     return (
@@ -23,7 +26,8 @@ const Headers = () => {
                             Search
                         </button>
                     </div>
-                    <div className="flex items-center justify-center gap-7 text-gray-500 text-lg " >
+                    { AuthorizationToken ? 
+                        <div className="flex items-center justify-center gap-7 text-gray-500 text-lg " >
                         <Link to="/profile" className=" flex flex-col items-center"  >
                             <FaUser />
                             <span className="text-xs">Profie</span>
@@ -38,6 +42,12 @@ const Headers = () => {
                             <span className="text-xs">message</span>
                         </div>
                     </div>
+                    : <div className="flex gap-4" >
+                        <Link to="/login" className="py-1 px-3 border-2 rounded-lg hover:bg-blue-500 hover:text-white flex gap-1 items-center " > <FaUser /> Login</Link>
+                        <Link to="/register/seller" className="py-1 px-3 border-2 rounded-lg hover:bg-blue-500 hover:text-white flex gap-1 items-center" > <AiFillShop /> Become a Seller</Link>
+                        </div>
+
+                    }
                 </div>
 
                 <hr/>
