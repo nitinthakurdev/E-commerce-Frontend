@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 const ProductGrid = ({ data }) => {
@@ -8,7 +9,8 @@ const ProductGrid = ({ data }) => {
 
                 {data.map((item, index) => {
                     return (
-                        <div key={index} className='p-3 border-2 rounded-md' >
+                        <Link to="/productdetail" key={index} >
+                        <div  className='p-3 border-2 rounded-md' >
                             <div className='flex  justify-center ' >
                                 <img src={item.image} className='h-36' />
                             </div>
@@ -38,6 +40,7 @@ const ProductGrid = ({ data }) => {
                                 <p className=' font-medium' >{item.name}</p>
                             </div>
                         </div>
+                </Link>
                     )
                 })}
             </div>

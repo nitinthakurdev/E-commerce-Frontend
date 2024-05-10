@@ -53,7 +53,7 @@ const Headers = () => {
                 <hr/>
                 {path === "cart" || path === "profile" ? null:  <div>
                     <ul className="flex justify-between items-center py-4 px-10">
-                        <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer " >All Category</li>
+                        <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer "><Link to="/productlist" >All Category</Link></li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Mobile & Tablets </li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">TV & Appliances</li>
                         <li className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer">Electronic</li>

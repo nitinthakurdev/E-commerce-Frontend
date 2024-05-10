@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export const CategoryBanners = ({ value }) => {
@@ -19,7 +20,8 @@ export const CategoryBanners = ({ value }) => {
               <div className=" w-[80%] bg-white  grid  grid-cols-4 ">
                 {item.data.map((item) => {
                   return (
-                    <div key={item.id} className="border flex p-3 justify-between">
+                    <Link to="/productdetail" key={item.id} className="border " >
+                    <div className="flex p-3 justify-between " >
                       <div className="">
                         <h2 className="text-lg font-medium">{item.name}</h2>
                         <span className="text-gray-600 font-medium">From</span>
@@ -31,6 +33,7 @@ export const CategoryBanners = ({ value }) => {
                         <img className="w-20" src={item.image} alt="" />
                       </div>
                     </div>
+                    </Link>
                   );
                 })}
               </div>

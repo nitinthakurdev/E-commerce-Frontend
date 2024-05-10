@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 const ProductList = ({ data }) => {
@@ -7,7 +8,8 @@ const ProductList = ({ data }) => {
             {
                 data.map((item, index) => {
                     return (
-                        <div key={index} className='border-2 my-3 py-3 rounded-md flex ' >
+                        <Link to="/productdetail" key={index}>
+                        <div  className='border-2 my-3 py-3 rounded-md flex ' >
                             <div className='w-[25%] ' >
                                 <img src={item.image} className='h-36 ps-5' alt="" />
                             </div>
@@ -39,6 +41,7 @@ const ProductList = ({ data }) => {
                             </div>
 
                         </div>
+            </Link>
                     )
                 })
             }
