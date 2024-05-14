@@ -26,14 +26,14 @@ const SellerHeaders = () => {
                         {menu && <div className=' absolute w-40 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
                             <ul className='py-3' >
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' ><Link to="/productlist" >Product List</Link></li>
-                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Category List </li>
+                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '><Link to='/categorylist' >Category List</Link> </li>
                             </ul>
                         </div>}
                     </li>
                     <li className='flex items-center gap-2 relative' onMouseEnter={showMenu1} onMouseLeave={showMenu1} > <FaAngleDown className={`${menu1 ? "rotate-0" : "rotate-180"} duration-200 transition-all`} /> Product
                         {menu1 && <div className=' absolute w-44 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
                             <ul className='py-3' >
-                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' >Add Product</li>
+                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' ><Link to="/add-new-product" >Add Product</Link></li>
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Add Category</li>
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Add Product color</li>
                             </ul>
