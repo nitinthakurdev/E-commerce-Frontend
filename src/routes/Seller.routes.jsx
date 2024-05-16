@@ -1,3 +1,4 @@
+import AddCategory from "../features/Seller/pages/AddCategory";
 import AddProduct from "../features/Seller/pages/AddProduct";
 import OrdersTable from "../features/Seller/pages/OrderPage/Orders";
 import Productlist from "../features/Seller/pages/ProductList/Productlist";
@@ -21,5 +22,9 @@ export const SellerRoute = [
     {
         path:"/add-new-product",
         element:<AddProduct/>
+    },
+    {
+        path:"/add-new-category",
+        element:<AddCategory/>
     },
 ]

@@ -34,7 +34,7 @@ const SellerHeaders = () => {
                         {menu1 && <div className=' absolute w-44 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
                             <ul className='py-3' >
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' ><Link to="/add-new-product" >Add Product</Link></li>
-                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Add Category</li>
+                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '><Link to="/add-new-category" >Add Category</Link></li>
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Add Product color</li>
                             </ul>
                         </div>}
