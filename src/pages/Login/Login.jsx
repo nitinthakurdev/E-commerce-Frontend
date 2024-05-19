@@ -9,7 +9,7 @@ const Login = () => {
   const { LoginHandler ,AuthorizationToken} = useAuthContext()
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
-  console.log(AuthorizationToken)
+ 
 
 
 

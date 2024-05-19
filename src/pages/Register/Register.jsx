@@ -1,13 +1,14 @@
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
-import { Link, useLocation} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { VscEye,VscEyeClosed } from "react-icons/vsc";
 import * as yup from "yup"
 import { useAuthContext } from '../../context';
 
 const Register = () => {
-  const {RegisterHandler} = useAuthContext()
+  const {RegisterHandler,AuthorizationToken} = useAuthContext()
   const location = useLocation()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const SellerLogin = () => {
     const temp = location.pathname.split("/")
@@ -34,6 +35,12 @@ const Register = () => {
     }
   })
   
+  useEffect(()=>{
+    if(AuthorizationToken){
+      navigate('/')
+    }
+
+},[AuthorizationToken])
 
 
   return (

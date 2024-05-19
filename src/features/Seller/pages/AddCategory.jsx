@@ -1,52 +1,99 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useProductContext } from '../../../context'
+import { Link, useLocation } from 'react-router-dom'
 
 const AddCategory = () => {
+    const { CreateCategory, disabled, category,EditCategory } = useProductContext()
+    const location = useLocation()
+    const path = location.pathname.replace("/add-category/", "")
+    const [image, setImage] = useState('')
+    const [Categorydata,setCategoryData] = useState(null)
+
+    const [data, setData] = useState({
+        category_name: null,
+        category_image: null
+    })
+    const handleImage = (e) => {
+        const file = e.target.files[0]
+        setData({ ...data, category_image: file })
+        let imagePath = URL.createObjectURL(file)
+        setImage(imagePath)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formdata = new FormData()
+        formdata.append("category_name", data.category_name)
+        formdata.append("category_image", data.category_image)
+        if(path !== "new"){
+            let temp = {
+                category_name:data.category_name ? data.category_name : Categorydata.category_name,
+                category_image:data.category_image ? data.category_image : Categorydata.category_image
+            }
+            const formdata = new FormData()
+            formdata.append("category_name", temp.category_name)
+            formdata.append("category_image", temp.category_image)
+            EditCategory(formdata,Categorydata._id)
+        }else{
+            CreateCategory(formdata)
+        }
+    }
+
+    
+    useEffect(() => {
+        if (path !== "new") {
+            const editCategory = category?.filter((item) => item._id === path)[0]
+            setImage(editCategory?.category_image)
+            setCategoryData(editCategory)
+        }
+    }, [])
+
+
     return (
         <div>
-            <h2 className='text-2xl font-bold text-center py-4' >Add New Category</h2>
+            <h2 className='text-2xl font-bold text-center py-4' >{path !== "new" ? "Edit Category" : "Add New Category"}</h2>
 
-            <form>
-                <div class="space-y-12 px-20 ">
-                    <div class="border-b border-gray-900/10 pb-12">
-
-                        <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-                        <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
-
-                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <form className='col-span-4 px-20 ' >
+                <div className="space-y-12  ">
+                    <div className="border-b border-gray-900/10 pb-12">
 
 
-                            <div class="sm:col-span-4">
-                                <label for="Name" class="block text-sm font-medium leading-6 text-gray-900"> Category Name </label>
-                                <div class="mt-2">
-                                    <input id="Name" name="Name" type="Name" autocomplete="Name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+
+                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+
+                            <div className="col-span-4">
+                                <label htmlFor="Name" className="block text-sm font-medium leading-6 text-gray-900"> Category Name </label>
+                                <div className="mt-2">
+                                    <input id="Name" type="Name" defaultValue={path !== "new" ? Categorydata?.category_name : ""} autoComplete="Name" onChange={(e) => setData({ ...data, category_name: e.target.value })} className=" px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
 
-                            <div class="col-span-full">
-                                <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Category Image</label>
-                                <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                    <div class="text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                                        </svg>
-                                        <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                            <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                                <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only" />
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
+                            <div className="col-span-4">
+                                <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900"> Category Image
+                                    <div className='h-[300px] w-[500px] bg-slate-100 rounded-xl flex flex-col items-center justify-center p-5' >
+                                        <input type="file" id='image' accept='image/*' hidden onChange={handleImage} />
+                                        {!image ? <div className=' flex flex-col items-center justify-center border border-dashed border-black h-full w-full '>
+                                            <img src="../uploadimage.png" className='h-20 w-20' alt="" />
+                                            <p className='font-medium text-center' >Drag and drop or click <br /> to upload image </p>
+                                            <span className='text-sm pt-4 text-gray-500' >Upload any image from desktop</span>
                                         </div>
-                                        <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                            :
+                                            <div className='h-full w-full rounded-xl flex items-center justify-center' >
+                                                <img src={image} className='h-full' alt="" />
+                                            </div>}
                                     </div>
-                                </div>
+                                </label>
+
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="mt-6 px-20 flex items-center justify-end gap-x-6">
-                    <button type="submit" class="rounded-md bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                <div className=" flex py-3 justify-end gap-5 w-2/3">
+                    {path !== "new" && <Link to="/category-list"  className="rounded-md  px-5 py-2 text-sm font-semibold  hover:text-white border-2 shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Cancel</Link>}
+                    <button type="submit" disabled={disabled} onClick={handleSubmit} className="rounded-md bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
                 </div>
             </form>
 

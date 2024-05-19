@@ -12,19 +12,23 @@ export const SellerRoute = [
         element:<OrdersTable/>
     },
     {
-        path:"/productlist",
+        path:"/product-list",
         element:<Productlist/>
     },
     {
-        path:"/categorylist",
+        path:"/category-list",
         element:<Categorylist/>
     },
     {
-        path:"/add-new-product",
+        path:"/add-product/new",
         element:<AddProduct/>
     },
     {
-        path:"/add-new-category",
+        path:"/add-category/new",
+        element:<AddCategory/>
+    },
+    {
+        path:"/add-category/:id",
         element:<AddCategory/>
     },
 ]
