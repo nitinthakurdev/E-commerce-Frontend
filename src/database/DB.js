@@ -1,0 +1,22 @@
+export const ColorData =[
+    {"colorName": "Black", "id": 1},
+    {"colorName": "White", "id": 2},
+    {"colorName": "Red", "id": 3},
+    {"colorName": "Green", "id": 4},
+    {"colorName": "Blue", "id": 5},
+    {"colorName": "Yellow", "id": 6},
+    {"colorName": "Orange", "id": 7},
+    {"colorName": "Purple", "id": 8},
+    {"colorName": "Pink", "id": 9},
+    {"colorName": "Brown", "id": 10},
+    {"colorName": "Gray", "id": 11},
+    {"colorName": "Cyan", "id": 12},
+    {"colorName": "Magenta", "id": 13},
+    {"colorName": "Lime", "id": 14},
+    {"colorName": "Maroon", "id": 15},
+    {"colorName": "Navy", "id": 16},
+    {"colorName": "Olive", "id": 17},
+    {"colorName": "Teal", "id": 18},
+    {"colorName": "Silver", "id": 19},
+    {"colorName": "Gold", "id": 20}
+]
