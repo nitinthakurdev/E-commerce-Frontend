@@ -31,4 +31,8 @@ export const SellerRoute = [
         path:"/add-category/:id",
         element:<AddCategory/>
     },
+    {
+        path:"/add-product/:id",
+        element:<AddProduct/>
+    },
 ]

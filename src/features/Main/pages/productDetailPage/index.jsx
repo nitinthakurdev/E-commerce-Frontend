@@ -3,49 +3,15 @@ import { IoIosArrowForward } from 'react-icons/io'
 import BasicDetail from './components/BasicDetail'
 import AllDetail from './AllDetail'
 import { ProductCard } from '../../components/Cards'
+import { useProductContext } from '../../../../context'
+import { useLocation } from 'react-router-dom'
 
 const ProductDetail = () => {
-  const data2 = [
-    {
-        id:1,
-        image:"./productimage/watch.png",
-        name:"Smart Watches",
-        discunt:"-25%"
-    
-    },
-    {
-        id:2,
-        image:"./productimage/laptop.png",
-        name:"Smart Watches",
-        discunt:"-15%"
-    
-    },
-    {
-        id:3,
-        image:"./productimage/camra.png",
-        name:"Smart Watches",
-        discunt:"-40%"
-    
-    },
-    {
-        id:4,
-        image:"./productimage/hearphone.png",
-        name:"Smart Watches",
-        discunt:"-25%"
-    
-    },
-    {
-        id:5,
-        image:"./productimage/phone.png",
-        name:"Smart Watches",
-        discunt:"-25%"
-    
-    },
-   
-   
-    
+  const {allProduct} = useProductContext()
+  const location = useLocation()
+  const id = location.pathname.replace("/productdetail/","")
+  const filterdata = allProduct?.filter((item)=>item._id === id)[0]
 
-]
   return (
     <div className="px-10 py-3">
       <nav className="flex py-3" aria-label="Breadcrumb">
@@ -66,11 +32,11 @@ const ProductDetail = () => {
         </ol>
       </nav>
       <div>
-      <BasicDetail />
-      <AllDetail />
+      <BasicDetail data={filterdata} />
+      <AllDetail data={filterdata} />
       </div>
       <div>
-      <ProductCard data={data2} />
+      <ProductCard data={allProduct} />
       </div>
       
     </div>

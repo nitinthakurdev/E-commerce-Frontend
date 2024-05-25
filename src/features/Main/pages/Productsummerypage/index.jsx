@@ -4,70 +4,14 @@ import Filter from "./components/Filter";
 import ListView from "./components/ListView";
 import ProductList from "./components/ProductList";
 import ProductGrid from "./components/ProductGrid";
+import { useProductContext } from "../../../../context";
 
 const ProductSummery = () => {
+  const {allProduct} = useProductContext()
 
     const [list,setList] = useState(true)
 
-    const data = [
-        {
-            id:1,
-            image:"./productimage/watch.png",
-            name:"Smart Watches",
-            discunt:"25%",
-            mrpPrice:"3000",
-            sellingPrice:"2599",
-            desc:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, amet, quibusdam soluta velit voluptatum asperiores aliquam suscipit magni vel id, pariatur explicabo molestiae officia enim.pariatur explicabo molestiae officia enim,",
-            rating:2.5
-        
-        },
-        {
-            id:2,
-            image:"./productimage/laptop.png",
-            name:"Smart Watches",
-            discunt:"15%",
-            mrpPrice:"3000",
-            sellingPrice:"2599",
-            desc:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, amet, quibusdam soluta velit voluptatum asperiores aliquam suscipit magni vel id, pariatur explicabo molestiae officia enim.pariatur explicabo molestiae officia enim,",
-            rating:3.8
-        
-        },
-        {
-            id:3,
-            image:"./productimage/camra.png",
-            name:"Smart Watches",
-            discunt:"40%",
-            mrpPrice:"3000",
-            sellingPrice:"2599",
-            desc:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, amet, quibusdam soluta velit voluptatum asperiores aliquam suscipit magni vel id, pariatur explicabo molestiae officia enim.pariatur explicabo molestiae officia enim,",
-            rating:3.5
-        
-        },
-        {
-            id:4,
-            image:"./productimage/hearphone.png",
-            name:"Smart Watches",
-            discunt:"25%",
-            mrpPrice:"3000",
-            sellingPrice:"2599",
-            desc:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, amet, quibusdam soluta velit voluptatum asperiores aliquam suscipit magni vel id, pariatur explicabo molestiae officia enim.pariatur explicabo molestiae officia enim,",
-            rating:2.8
-        
-        },
-        {
-            id:5,
-            image:"./productimage/phone.png",
-            name:"Smart Watches",
-            discunt:"25%",
-            mrpPrice:"3000",
-            sellingPrice:"2599",
-            desc:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, amet, quibusdam soluta velit voluptatum asperiores aliquam suscipit magni vel id, pariatur explicabo molestiae officia enim.pariatur explicabo molestiae officia enim,",
-            rating:4.1
-        
-        },
-        
-
-    ]
+    
 
 
   return (
@@ -89,8 +33,8 @@ const ProductSummery = () => {
         <Filter/>
         <div className=" w-[80%]" >
         <ListView setList={setList} list={list}/>
-        {list ? <ProductList data={data} /> :
-        <ProductGrid data={data}  />}
+        {list ? <ProductList data={allProduct} /> :
+        <ProductGrid data={allProduct}  />}
         </div>
       </div>
     </div>

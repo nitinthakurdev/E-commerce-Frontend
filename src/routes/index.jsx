@@ -15,6 +15,7 @@ import { useAuthContext } from "../context";
 import SellerLayout from "./SellerLayout";
 import { SellerRoute } from "./Seller.routes";
 import SellerHome from "../features/Seller/pages";
+import NotFound from "../features/Main/components/NotFound";
 
 const index = () => {
   const { AuthorizationToken,userType } = useAuthContext()
@@ -48,6 +49,7 @@ const index = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/register/seller" element={<Register />} />
+      <Route path="/*" element={<NotFound/>} />
 
     </Routes>
   )

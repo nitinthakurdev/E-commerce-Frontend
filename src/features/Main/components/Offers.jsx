@@ -1,46 +1,9 @@
 import React from 'react'
 import { OfferCard } from './Cards'
+import { useProductContext } from '../../../context'
 
 const Offers = () => {
-    const data = [
-        {
-            id:1,
-            image:"./productimage/watch.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:2,
-            image:"./productimage/laptop.png",
-            name:"Smart Watches",
-            discunt:"-15%"
-        
-        },
-        {
-            id:3,
-            image:"./productimage/camra.png",
-            name:"Smart Watches",
-            discunt:"-40%"
-        
-        },
-        {
-            id:4,
-            image:"./productimage/hearphone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:5,
-            image:"./productimage/phone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        
-
-    ]
+    const {allProduct} = useProductContext()
     return (
         <div className=' py-3  bg-slate-100'>
             <div className='bg-white flex ' >
@@ -70,7 +33,7 @@ const Offers = () => {
                     
                 </div>
                 <div className='p-5 w-[80%]  grid  grid-cols-5  ' >
-                    <OfferCard data={data} />
+                    <OfferCard data={allProduct} />
                 </div>
             </div>
         </div>

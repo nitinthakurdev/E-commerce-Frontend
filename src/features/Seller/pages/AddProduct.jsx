@@ -31,7 +31,14 @@ const AddProduct = () => {
         product_modal: "",
         product_dimantion: "",
         product_inStock: "",
-        product_skuId: ""
+        product_skuId: "",
+        product_brand:"",
+        local_charge:"",
+        zonal_charge:"",
+        national_charge:"",
+        local_dedline:"",
+        zonal_dedline:"",
+        national_dedline:"",
     }
 
     const validation = yup.object({
@@ -47,7 +54,14 @@ const AddProduct = () => {
         product_modal: yup.string().required("Product Modal is required"),
         product_dimantion: yup.string().required("Product Dimantion is required"),
         product_inStock: yup.string().required("Product In Stock is required"),
-        product_skuId: yup.string().required("Product SKU Id is required")
+        product_skuId: yup.string().required("Product SKU Id is required"),
+        product_brand:yup.string().required("Product Brand is required"),
+        local_charge:yup.number().required("Product Local Charges is required"),
+        zonal_charge:yup.number().required("Product Zonal Charges is required"),
+        national_charge:yup.number().required("Product National Charges is required"),
+        local_dedline:yup.string().required("Product Local Dedline is required"),
+        zonal_dedline:yup.string().required("Product Zonal Dedline is required"),
+        national_dedline:yup.string().required("Product National Dedline is required"),
     })
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -98,6 +112,9 @@ const AddProduct = () => {
                     </div>
                     <div className='w-[55%] border px-5 py-5' >
                         <form onSubmit={handleSubmit} className='flex flex-col gap-5 pb-10 max-h-screen overflow-y-scroll px-10' >
+                            <h2 className='bg-gray-200 text-center text-xl font-medium' >
+                                General
+                            </h2>
                             <div>
                                 <label htmlFor='pname' className='font-medium px-1 py-2 flex' >Product Name/Title</label>
                                 <input type='text' id='pname' name='name' value={values.name} onChange={handleChange} onBlur={handleBlur} placeholder='Product Name/title' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
@@ -125,11 +142,11 @@ const AddProduct = () => {
                             <div className='' >
                                 <label htmlFor='Color' className='font-medium px-1 py-2 flex' >Color</label>
                                 <Multiselect
-                                    options={ColorData} // Options to display in the dropdown
-                                    selectedValues={() => console.log(ColorData.selectedValues)} // Preselected value to persist in dropdown
-                                    onSelect={onSelect} // Function will trigger on select event
-                                    onRemove={onRemove} // Function will trigger on remove event
-                                    displayValue="colorName" // Property name to display in the dropdown options
+                                    options={ColorData} 
+                                    selectedValues={null} 
+                                    onSelect={onSelect} 
+                                    onRemove={onRemove} 
+                                    displayValue="colorName" 
                                 />
                             </div>
                             <div>
@@ -137,6 +154,11 @@ const AddProduct = () => {
                                 <input type='text' id='dimantion' name='product_dimantion' value={values.product_dimantion} onChange={handleChange} onBlur={handleBlur} placeholder='Dimantion' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
                                 {errors.product_dimantion && touched.product_dimantion ? <p className='text-red-500' >{errors.product_dimantion}</p> : null}
                             </div>
+
+                            <h2 className='bg-gray-200 text-center text-xl font-medium' >
+                                Product Details
+                            </h2>
+
                             <div className='flex justify-between' >
 
                                 <div className='w-[45%]' >
@@ -176,7 +198,19 @@ const AddProduct = () => {
                                     {errors.product_modal && touched.product_modal ? <p className='text-red-500' >{errors.product_modal}</p> : null}
                                 </div>
                             </div>
+                            <div className='flex justify-between' >
 
+                                <div className='w-[45%]' >
+                                    <label htmlFor='brand' className='font-medium px-1 py-2 flex' >Product Brand</label>
+                                    <input type='text' id='brand' name='product_brand' value={values.product_brand} onChange={handleChange} onBlur={handleBlur} placeholder='Product Brand' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.product_brand && touched.product_brand ? <p className='text-red-500' >{errors.product_brand}</p> : null}
+                                </div>
+                               
+                            </div>
+
+                            <h2 className='bg-gray-200 text-center text-xl font-medium' >
+                                Product Charges & Stock
+                            </h2>
 
 
                             <div className='flex justify-between' >
@@ -200,6 +234,53 @@ const AddProduct = () => {
                                     <input type='text' id='Stock' name='product_inStock' value={values.product_inStock} onChange={handleChange} onBlur={handleBlur} placeholder='Product IN STock' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
                                     {errors.product_inStock && touched.product_inStock ? <p className='text-red-500' >{errors.product_inStock}</p> : null}
                                 </div>
+                                <div className='w-[45%]'>
+                                    <label htmlFor='local' className='font-medium px-1 py-2 flex' >Product Local Charges</label>
+                                    <input type='text' id='local' name='local_charge' value={values.local_charge} onChange={handleChange} onBlur={handleBlur} placeholder='Product Local Charges' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.local_charge && touched.local_charge ? <p className='text-red-500' >{errors.local_charge}</p> : null}
+                                </div>
+                            </div>
+
+                            <div className='flex justify-between' >
+
+
+                                <div className='w-[45%]'>
+                                    <label htmlFor='zonal' className='font-medium px-1 py-2 flex' >Product Zonal Charges</label>
+                                    <input type='text' id='zonal' name='zonal_charge' value={values.zonal_charge} onChange={handleChange} onBlur={handleBlur} placeholder='Product Zonal Charges' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.zonal_charge && touched.zonal_charge ? <p className='text-red-500' >{errors.zonal_charge}</p> : null}
+                                </div>
+                                <div className='w-[45%]'>
+                                    <label htmlFor='national' className='font-medium px-1 py-2 flex' >Product National Charges</label>
+                                    <input type='text' id='national' name='national_charge' value={values.national_charge} onChange={handleChange} onBlur={handleBlur} placeholder='Product National Charges' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.national_charge && touched.national_charge ? <p className='text-red-500' >{errors.national_charge}</p> : null}
+                                </div>
+                            </div>
+                            <h2 className='bg-gray-200 text-center text-xl font-medium' >
+                                Product delivery Dedline
+                            </h2>
+                            <div className='flex justify-between' >
+
+
+                                <div className='w-[45%]'>
+                                    <label htmlFor='Local' className='font-medium px-1 py-2 flex' > Local Delivery Dedline</label>
+                                    <input type='text' id='Local' name='local_dedline' value={values.local_dedline} onChange={handleChange} onBlur={handleBlur} placeholder=' Local Delivery Dedline' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.local_dedline && touched.local_dedline ? <p className='text-red-500' >{errors.local_dedline}</p> : null}
+                                </div>
+                                <div className='w-[45%]'>
+                                    <label htmlFor='zon' className='font-medium px-1 py-2 flex' > Zonal Delivery Dedline</label>
+                                    <input type='text' id='zon' name='zonal_dedline' value={values.zonal_dedline} onChange={handleChange} onBlur={handleBlur} placeholder='Zonal Delivery Dedline' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.zonal_dedline && touched.zonal_dedline ? <p className='text-red-500' >{errors.zonal_dedline}</p> : null}
+                                </div>
+                            </div>
+                            <div className='flex justify-between' >
+
+
+                                <div className='w-[45%]'>
+                                    <label htmlFor='nati' className='font-medium px-1 py-2 flex' >National Delivery Dedline</label>
+                                    <input type='text' id='nati' name='national_dedline' value={values.national_dedline} onChange={handleChange} onBlur={handleBlur} placeholder='National Delivery Dedline' className='w-full py-1 px-3 text-lg rounded-lg border focus:outline-cyan-700 ' />
+                                    {errors.national_dedline && touched.national_dedline ? <p className='text-red-500' >{errors.national_dedline}</p> : null}
+                                </div>
+                                
                             </div>
                             <div>
                                 <button type='submit' disabled={disabled} className='text-lg font-medium text-white bg-blue-600 px-5 py-2 rounded-lg hover:bg-blue-800 ' >Submit</button>

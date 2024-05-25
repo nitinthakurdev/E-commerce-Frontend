@@ -8,7 +8,7 @@ const Categorylist = () => {
     const [filterdata,setFilterdata] = useState([])
     const handleChange = (e) => {
         const searchValue = e.target.value.toLowerCase().replace(/[^a-zA-Z\s]/g, '').replace(/\s+/g, ' ').trim();
-        const filteredData = category.filter(item => 
+        const filteredData = category?.filter(item => 
             item.category_name.toLowerCase().replace(/[^a-zA-Z\s]/g, '').replace(/\s+/g, ' ').includes(searchValue)
         );
         setFilterdata(filteredData);
@@ -66,7 +66,7 @@ const Categorylist = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        filterdata.map((item, index) => {
+                                        filterdata?.map((item, index) => {
                                             let date = item.createdAt.substring(0, 10);
                                             return (
                                                 <tr key={index}>

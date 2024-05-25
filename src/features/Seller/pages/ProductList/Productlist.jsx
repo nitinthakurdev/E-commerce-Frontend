@@ -3,10 +3,12 @@ import React, { useState } from "react";
 
 import { useProductContext } from "../../../../context";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Productlist = () => {
     const { allProduct,DeleteProduct } = useProductContext()
     const [toggle,settoggle] = useState(false)
+    const [ind,setIndex] = useState("")
     return (
         <>
 
@@ -76,7 +78,7 @@ const Productlist = () => {
                                                 <div className="flex items-center">
                                                     <div className="flex-shrink-0 w-20 h-20">
                                                         <img className="w-full h-full rounded-xl overflow-hidden"
-                                                            src={item?.product_image[0]?.ImageUrl}
+                                                            src={item.product_image[0].ImageUrl}
                                                             alt="" />
                                                     </div>
                                                     <div className="ml-3">
@@ -100,8 +102,8 @@ const Productlist = () => {
                                                 </p>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    Home and Decor
+                                                <p className="text-gray-900 whitespace-no-wrap capitalize ">
+                                                   {item.product_category.category_name}
                                                 </p>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -109,12 +111,12 @@ const Productlist = () => {
                                                     22-06-2024
                                                 </p>
                                             </td>
-                                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm relative">
-                                                <BsThreeDotsVertical className="text-4xl hover:bg-gray-300 cursor-pointer py-1 rounded-lg" onClick={()=>settoggle(!toggle)} />
+                                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm relative z-0">
+                                                <BsThreeDotsVertical className="text-4xl hover:bg-gray-300 cursor-pointer py-1 rounded-lg" onClick={()=>{settoggle(!toggle);setIndex(index)}} />
 
-                                                <div className={`absolute ${toggle ? "" : "hidden"} top-20 w-28 rounded-md overflow-hidden  select-none  left-[-30px] bg-gray-200`} >
+                                                <div className={`absolute ${toggle && ind === index  ? "" : "hidden"} top-20 w-28 z-50  rounded-md overflow-hidden select-none  left-[-30px] bg-gray-200`} >
                                                     <button className="w-full py-2  hover:text-white hover:bg-blue-500" >View Details</button>
-                                                    <button className="w-full py-2  hover:text-white hover:bg-blue-500" >Edit Product</button>
+                                                    <button className="w-full py-2  hover:text-white hover:bg-blue-500" ><Link to={`/add-product/${item._id}`} >Edit Product</Link></button>
                                                     <button className="w-full py-2  hover:text-white hover:bg-red-500" onClick={()=>DeleteProduct(item._id)} >Delete product</button>
                                                 </div>
                                             </td>

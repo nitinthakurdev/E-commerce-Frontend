@@ -6,8 +6,10 @@ import { CategoryBanners } from '../components/CategoryBanners'
 import { ProductCard } from '../components/Cards'
 import NewsLetter from '../components/NewsLetter'
 import Footer from '../components/Footer'
+import { useProductContext } from '../../../context'
 
 const Home = () => {
+    const {allProduct} = useProductContext()
     const data = [
         {
             id: 1,
@@ -126,90 +128,14 @@ const Home = () => {
 
     ]
 
-
-    const data2 = [
-        {
-            id:1,
-            image:"./productimage/watch.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:2,
-            image:"./productimage/laptop.png",
-            name:"Smart Watches",
-            discunt:"-15%"
-        
-        },
-        {
-            id:3,
-            image:"./productimage/camra.png",
-            name:"Smart Watches",
-            discunt:"-40%"
-        
-        },
-        {
-            id:4,
-            image:"./productimage/hearphone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:5,
-            image:"./productimage/phone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:6,
-            image:"./productimage/sofa.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:7,
-            image:"./productimage/lamp.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:8,
-            image:"./productimage/headphone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:9,
-            image:"./productimage/wallet.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-        {
-            id:10,
-            image:"./productimage/iphone.png",
-            name:"Smart Watches",
-            discunt:"-25%"
-        
-        },
-       
-        
-
-    ]
     return (
         <div className='px-10' >
          <Banner/>
          <Offers/>
          <CategoryBanners value={value} />
-         <ProductCard data={data2} />
+         <ProductCard data={allProduct} />
          <AdvBanner/>
-         <ProductCard data={data2} />
+         <ProductCard data={allProduct} />
          <NewsLetter />
          
         </div>

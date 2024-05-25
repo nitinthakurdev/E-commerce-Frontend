@@ -9,7 +9,7 @@ const MainRoutes = [
       element: <ProductSummery />,
     },
     {
-      path: "/productdetail",
+      path: "/productdetail/:id",
       element: <ProductDetail />,
     },
   ];

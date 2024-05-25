@@ -6,16 +6,16 @@ import { useAuthContext } from "..";
 export const Productcontext = createContext()
 
 const ProductContextProvider = ({ children }) => {
-    const {AuthorizationToken} = useAuthContext()
-    const [disabled,setDisabled] = useState(false)
-    const [category,setCategory] = useState([])
-    const [allProduct,setAllProduct] = useState([])
+    const { AuthorizationToken } = useAuthContext()
+    const [disabled, setDisabled] = useState(false)
+    const [category, setCategory] = useState([])
+    const [allProduct, setAllProduct] = useState([])
 
-    const GetCategory  = async () => {
-        try{
+    const GetCategory = async () => {
+        try {
             const res = await axios.get("/api/v1/category/get")
             setCategory(res.data.data)
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -24,7 +24,7 @@ const ProductContextProvider = ({ children }) => {
         setDisabled(true)
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.post("/api/v1/category/create",data)
+            const res = await axios.post("/api/v1/category/create", data)
             toast.dismiss(toastId);
             toast.success(res.data.message)
             GetCategory()
@@ -32,53 +32,53 @@ const ProductContextProvider = ({ children }) => {
         } catch (err) {
             toast.dismiss(toastId);
             toast.error(err.response.data.message)
-        }finally{
+        } finally {
             setDisabled(false)
         }
     }
 
     const Deletecategory = async (id) => {
-        
+
         setDisabled(true)
         const toastId = toast.loading('Loading...');
-        try{
+        try {
             const res = await axios.delete(`/api/v1/category/delete/${id}`)
             toast.dismiss(toastId);
             toast.success(res.data.message)
             GetCategory()
-        }catch(err){
+        } catch (err) {
             toast.dismiss(toastId);
             toast.error(err.response.data.message)
-        }finally{
+        } finally {
             setDisabled(false)
         }
     }
 
-    const EditCategory = async (data,id) => {
+    const EditCategory = async (data, id) => {
         setDisabled(true)
         const toastId = toast.loading('Loading...');
-        try{
-            const res = await axios.patch(`/api/v1/category/update/${id}`,data)
+        try {
+            const res = await axios.patch(`/api/v1/category/update/${id}`, data)
             toast.dismiss(toastId);
             toast.success(res.data.message)
             GetCategory()
             window.location.href = "/category-list"
 
-        }catch(err){
+        } catch (err) {
             console.log(err)
             toast.dismiss(toastId);
             toast.error(err.response.data.message)
-        }finally{
+        } finally {
             setDisabled(false)
         }
     }
 
 
-    const GetProduct  = async () => {
-        try{
+    const GetProduct = async () => {
+        try {
             const res = await axios.get("/api/v1/product/getall")
             setAllProduct(res.data.data)
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -87,7 +87,7 @@ const ProductContextProvider = ({ children }) => {
         setDisabled(true)
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.post("/api/v1/product/create",data)
+            const res = await axios.post("/api/v1/product/create", data)
             toast.dismiss(toastId);
             toast.success(res.data.message)
             GetProduct()
@@ -95,42 +95,43 @@ const ProductContextProvider = ({ children }) => {
         } catch (err) {
             toast.dismiss(toastId);
             toast.error(err.response.data.message)
-        }finally{
+        } finally {
             setDisabled(false)
         }
     }
 
 
     const DeleteProduct = async (id) => {
-        
+
         setDisabled(true)
         const toastId = toast.loading('Loading...');
-        try{
+        try {
             const res = await axios.delete(`/api/v1/product/delete/${id}`)
             toast.dismiss(toastId);
             toast.success(res.data.message)
             GetProduct()
-        }catch(err){
+        } catch (err) {
             toast.dismiss(toastId);
             toast.error(err.response.data.message)
-        }finally{
+        } finally {
             setDisabled(false)
         }
     }
 
 
 
-    useEffect(()=>{
-        if(AuthorizationToken){
-            GetCategory()
-            GetProduct()
-        }
-    },[AuthorizationToken])
-    
+    useEffect(() => {
+        GetCategory()
+        GetProduct()
+
+    }, [])
+
 
     return (
-        <Productcontext.Provider value={{CreateCategory,disabled,category,
-        Deletecategory,EditCategory,CreateProduct,allProduct,DeleteProduct}} >
+        <Productcontext.Provider value={{
+            CreateCategory, disabled, category,
+            Deletecategory, EditCategory, CreateProduct, allProduct, DeleteProduct
+        }} >
             {children}
         </Productcontext.Provider>
     )

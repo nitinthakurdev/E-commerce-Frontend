@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 export const OfferCard = ({ data }) => {
   return (
     <>
-      {data.map((item, index) => {
+      {data?.map((item, index) => {
+        const discountedAmount = item.mrp_price - item.selling_price
+        const discount = (discountedAmount*100/item.mrp_price).toFixed()
+        
         return (
-          <Link to="/productdetail " key={index} className="border p-4 flex flex-col items-center justify-center " >
+          <Link to={`/productdetail/${item._id}`} key={index} className="border p-4 flex flex-col items-center justify-center " >
             <div>
-              <img className="h-[70%]" src={item.image} />
-              <h2 className="text-sm text-center font-medium">{item.name}</h2>
+              <img className="h-[70%]" src={item.product_image[0].ImageUrl} />
+              <h2 className="text-sm text-center font-medium">{item.name.slice(0,20)}...</h2>
               <div className="text-center  py-1">
-                <span className="bg-red-300 rounded-md px-1">{item.discunt}</span>
+                <span className="bg-red-300 rounded-md px-1">{discount}%</span>
               </div>
             </div>
           </Link>
@@ -26,16 +29,16 @@ export const ProductCard = ({ data }) => {
     <div className=" py-5" >
       <h2 className="font-medium text-2xl py-4 " >Recommended items</h2>
       <div className=" grid grid-cols-5 gap-5">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
-            <Link to="/productdetail" key={index} className="flex flex-col justify-around items-center border py-3" >
+            <Link to={`/productdetail/${item._id}`} key={index} className="flex flex-col justify-around items-center border py-3 px-3" >
               <div >
                 <div>
-                  <img src={item.image} />
+                  <img src={item?.product_image[0]?.ImageUrl} />
                 </div>
                 <div>
-                  <h2 className="font-medium text-lg ">{item.name}</h2>
-                  <h3 className="font-medium text-gray-600 ">Form Rs. 5000</h3>
+                  <h2 className="font-medium text-lg ">{item?.name.slice(0,20)}...</h2>
+                  <h3 className="font-medium text-gray-600 ">Form Rs. {item.selling_price}</h3>
                 </div>
               </div>
             </Link>

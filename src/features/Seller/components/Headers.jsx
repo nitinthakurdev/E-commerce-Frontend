@@ -26,7 +26,7 @@ const SellerHeaders = () => {
                     <li><Link to="/">Welcome</Link></li>
                     <li><Link to="/order" >Orders</Link></li>
                     <li className='flex items-center gap-2 relative' onMouseEnter={showMenu} onMouseLeave={showMenu} > <FaAngleDown className={`${menu ? "rotate-0" : "rotate-180"} duration-200 transition-all`} /> Listing
-                        {menu && <div className=' absolute w-40 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
+                        {menu && <div className=' absolute w-40 z-50 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
                             <ul className='py-3' >
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' ><Link to="/product-list" >Product List</Link></li>
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '><Link to='/category-list' >Category List</Link> </li>
@@ -34,11 +34,11 @@ const SellerHeaders = () => {
                         </div>}
                     </li>
                     <li className='flex items-center gap-2 relative' onMouseEnter={showMenu1} onMouseLeave={showMenu1} > <FaAngleDown className={`${menu1 ? "rotate-0" : "rotate-180"} duration-200 transition-all`} /> Product
-                        {menu1 && <div className=' absolute w-44 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
+                        {menu1 && <div className=' absolute w-52 z-50 top-full left-0 bg-blue-500 rounded-lg overflow-hidden ' >
                             <ul className='py-3' >
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer ' ><Link to="/add-product/new" >Add Product</Link></li>
                                 <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '><Link to="/add-category/new" >Add Category</Link></li>
-                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '>Add Product color</li>
+                                <li className='hover:bg-blue-600 px-3 py-1 cursor-pointer '><Link>Add Pricing & deliery</Link></li>
                             </ul>
                         </div>}
                     </li>
