@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 const ProductGrid = ({ data }) => {
+    const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // for smooth scrolling
+        });
+      };
     return (
         <>
             <div className='my-3 grid grid-cols-4 gap-5' >
@@ -11,7 +17,7 @@ const ProductGrid = ({ data }) => {
                      const amount = item.mrp_price - item.selling_price
                      const discount = (amount*100/item.mrp_price).toFixed()
                     return (
-                        <Link to={`/productdetail/${item._id}`} key={index} >
+                        <Link onClick={scrollToTop} to={`/productdetail/${item._id}`} key={index} >
                         <div  className='p-3 border-2 rounded-md' >
                             <div className='flex  justify-center ' >
                                 <img src={item.product_image[0].ImageUrl} className='h-36' />

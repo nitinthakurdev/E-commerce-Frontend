@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 const ProductList = ({ data }) => {
+    const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // for smooth scrolling
+        });
+      };
     return (
         <>
             {
@@ -10,7 +16,7 @@ const ProductList = ({ data }) => {
                     const amount = item.mrp_price - item.selling_price
                     const discount = (amount*100/item.mrp_price).toFixed()
                     return (
-                        <Link to={`/productdetail/${item._id}`} key={index}>
+                        <Link onClick={scrollToTop} to={`/productdetail/${item._id}`} key={index}>
                         <div  className='border-2 my-3 py-3 rounded-md flex ' >
                             <div className='w-[25%] ' >
                                 <img src={item.product_image[0].ImageUrl} className='h-36 ps-5' alt="" />
