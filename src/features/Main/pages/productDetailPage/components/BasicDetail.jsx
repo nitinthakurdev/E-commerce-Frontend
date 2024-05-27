@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { IoCheckmarkSharp } from "react-icons/io5";
-import ReactImageMagnify from 'react-image-magnify';
 import StarRatings from 'react-star-ratings';
 import { useComponentContext } from '../../../../../context';
+import ImageZoom from './ImageZoom';
 
 const BasicDetail = ({ data }) => {
     const {AddToCart,disable} = useComponentContext()
@@ -33,19 +33,8 @@ const BasicDetail = ({ data }) => {
                 <div className='w-full z-10 flex justify-center items-center border-2 rounded-md py-4' >
 
                     {/* <img src={renderImage} className='h-[300px] ' alt="" /> */}
-                    <ReactImageMagnify {...{
-                        smallImage: {
-                            alt: 'Wristwatch by Ted Baker London',
-                            isFluidWidth: true,
-                            src: renderImage,
-                            
-                        },
-                        largeImage: {
-                            src: renderImage,
-                            width: 450,
-                            height: 990,
-                        }
-                    }} />
+                    <ImageZoom image={renderImage} />
+                    
                 </div>
                 <div className='flex gap-3 pt-10' >
                     {data?.product_image?.map((item, index) => (
