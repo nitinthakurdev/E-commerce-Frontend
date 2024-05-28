@@ -84,6 +84,22 @@ const AuthContextProvider = ({ children }) => {
         }
     }
 
+    const EditProfile = async (data) => {
+        setDisabled(true)
+        const toastId = toast.loading('Loading...');
+        try {
+            const res = await axios.patch("/api/v1/users/avatar", data)
+            toast.dismiss(toastId);
+            toast.success(res.data.message)
+            setUser(res.data.data)
+        } catch (err) {
+            toast.dismiss(toastId);
+            toast.error(err.response.data.message)
+        } finally {
+            setDisabled(false)
+        }
+    }
+
     useEffect(() => {
         if (AuthorizationToken) {
             GetLoginUser()
@@ -94,7 +110,7 @@ const AuthContextProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={{
             LoginHandler, RegisterHandler,
-            AuthorizationToken, LogoutHandler, userType, user, UpdateUser
+            AuthorizationToken, LogoutHandler, userType, user, UpdateUser,EditProfile
         }} >
             {children}
         </AuthContext.Provider>

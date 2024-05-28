@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { IoCheckmarkSharp } from "react-icons/io5";
 import StarRatings from 'react-star-ratings';
-import { useComponentContext } from '../../../../../context';
+import { useAuthContext, useComponentContext } from '../../../../../context';
 import ImageZoom from './ImageZoom';
+import { useNavigate } from 'react-router-dom';
 
 const BasicDetail = ({ data }) => {
+    const {AuthorizationToken} = useAuthContext()
     const {AddToCart,disable} = useComponentContext()
+    const navigate = useNavigate()
     const [renderImage, setrenderImage] = useState("")
     const [color,setcolor] = useState(0)
 
@@ -15,7 +18,11 @@ const BasicDetail = ({ data }) => {
         product_id:""
     })
     const handleCart = () => {
-        AddToCart(product)
+        if(AuthorizationToken){
+            AddToCart(product)
+        }else{
+            navigate("/login")
+        }
     }
 
     useEffect(() => {

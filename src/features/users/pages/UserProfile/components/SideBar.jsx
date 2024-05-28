@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
@@ -10,8 +10,19 @@ import { TbLogout2 } from "react-icons/tb";
 import { useAuthContext } from '../../../../../context';
 
 const SideBar = () => {
-    const navigate = useNavigate()
-    const {LogoutHandler} = useAuthContext()
+    const {LogoutHandler,EditProfile,user} = useAuthContext()
+    const [image,setImage] = useState(null)
+    const handleAvatar = (e) =>{
+        const file = e.target.files[0]
+        const url = URL.createObjectURL(file)
+        setImage(url)
+        const formData = new FormData()
+        formData.append("avatar",file)
+        EditProfile(formData)
+    }
+    useEffect(()=>{
+        setImage(user?.avatar?.imageUrl)
+    },[user])
     return (
         <>
             <aside className=" text-black bg-gray-50 w-64 min-h-screen p-4">
@@ -20,9 +31,14 @@ const SideBar = () => {
                     <div className='relative'>
 
                         <div className='h-20 w-20 rounded-full  overflow-hidden relative' >
-                            <img src="../avtar.png" className='size-full' alt="" />
+                            <img src={image ? image : "../avtar.png"} className='size-full' alt="" />
                         </div>
-                        <div className='absolute right-0 bottom-0 h-5 w-5 rounded-full bg-gray-200 cursor-pointer flex items-center justify-center ' ><FaRegEdit /></div>
+                        <div className='absolute right-0 bottom-0 h-5 w-5 rounded-full bg-gray-200 cursor-pointer flex items-center justify-center ' >
+                            <label htmlFor="avtar">
+                                <input type="file" id='avtar' onChange={handleAvatar} hidden />
+                            <FaRegEdit />
+                            </label>
+                            </div>
                     </div>
                 </div>
                 <div className=' py-5 flex flex-col gap-5' >

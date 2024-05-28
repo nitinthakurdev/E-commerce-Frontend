@@ -11,22 +11,22 @@ const ImageZoom = ({ image }) => {
         const x = ((e.pageX - left) / width) * 100
         const y = ((e.pageY - top) / height) * 100
         setPosition({ x, y })
-        console.log("this is x",e.pageX - left,"this is y",e.pageY - top)
-        console.log("width",width,"height",height)
         setCourserPosition({ x: e.pageX - left, y: e.pageY - top })
     }
 
-
     return (
-        <div className='relative'
-            onMouseEnter={() => setShowZoom(true)}
-            onMouseLeave={() => setShowZoom(false)}
-            onMouseMove={HandleMove}
-        >
-            <img src={image} className='h-[300px] w-[300px]' alt="" />
-           {showZoom && <div style={{ position: "absolute", left: `${courserPosition.x - 100}px`, top: `${courserPosition.y - 300}px`, pointerEvents: "none" }} >
-                <div className='h-[200px] w-[200px] border-2' style={{ backgroundImage: `url(${image})`, backgroundPosition: `${position.x}% ${position.y - 50}%`,backgroundSize: '300%', }} ></div>
-            </div>}
+        <div className='w-full z-10 flex justify-center items-center border-2 rounded-md py-4' >
+
+            <div className='relative'
+                onMouseEnter={() => setShowZoom(true)}
+                onMouseLeave={() => setShowZoom(false)}
+                onMouseMove={HandleMove}
+            >
+                <img src={image} className='h-[300px] w-[350px] cursor-crosshair' alt="" />
+                {showZoom && <div style={{ position: "absolute", left: `${courserPosition.x - 125}px`, top: `${courserPosition.y - 300}px`, pointerEvents: "none" }} >
+                    <div className='h-[250px] w-[250px] border-2' style={{ backgroundImage: `url(${image})`, backgroundPosition: `${position.x}% ${position.y - 50}%`, backgroundSize: '300%', }} ></div>
+                </div>}
+            </div>
         </div>
     )
 }
