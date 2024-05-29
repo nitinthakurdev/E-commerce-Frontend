@@ -1,6 +1,8 @@
 import React from 'react'
+import { useComponentContext } from '../../../../../context'
 
 const CheckOut = ({data}) => {
+    const {CheckoutWithCart,disable} = useComponentContext()
     const MRP = data?.reduce((i,b)=>i + b?.product_id?.mrp_price * b.product_qty,0)
     const discount = data?.reduce((i,b)=>(i + b?.product_id?.mrp_price - b?.product_id?.selling_price) * b.product_qty,0 )
     const Selling = data?.reduce((i,b)=>i + b?.product_id?.selling_price * b.product_qty,0)
@@ -17,7 +19,7 @@ const CheckOut = ({data}) => {
             <h3 className='text-gray-600 font-medium flex justify-between items-center pb-5' > <span>Tax : </span><span className='text-green-500'  >Free</span></h3>
             <hr  />
             <h3 className=' font-bold flex justify-between items-center py-5' > <span>Total : </span><span className='text-green-500 text-xl ' > ₹{Selling}</span></h3>
-            <button className='w-full bg-[#00b517] hover:bg-[#019914] text-white rounded-lg text-xl font-medium py-2 ' >Checkout</button>
+            <button className='w-full bg-[#00b517] hover:bg-[#019914] text-white rounded-lg text-xl font-medium py-2 ' disabled={disable} onClick={()=>CheckoutWithCart(data)}  >Checkout</button>
             <div className='flex items-center justify-between py-3' >
                 {payementImage.map((item,index)=>(
                     <img key={index} src={item} alt="payement Logo" />

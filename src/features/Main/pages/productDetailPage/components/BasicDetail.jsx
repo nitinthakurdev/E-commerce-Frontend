@@ -5,9 +5,10 @@ import { useAuthContext, useComponentContext } from '../../../../../context';
 import ImageZoom from './ImageZoom';
 import { useNavigate } from 'react-router-dom';
 
+
 const BasicDetail = ({ data }) => {
     const {AuthorizationToken} = useAuthContext()
-    const {AddToCart,disable} = useComponentContext()
+    const {AddToCart,disable,makePayement} = useComponentContext()
     const navigate = useNavigate()
     const [renderImage, setrenderImage] = useState("")
     const [color,setcolor] = useState(0)
@@ -24,6 +25,8 @@ const BasicDetail = ({ data }) => {
             navigate("/login")
         }
     }
+
+    
 
     useEffect(() => {
         setproduct({
@@ -68,7 +71,7 @@ const BasicDetail = ({ data }) => {
                     <li className='flex gap-2 items-center'>Colors : <span className='flex gap-3 ' >{data?.product_color?.map((item, index) => <button key={index} className={`border-2 py-1 px-2 rounded-lg ${index === color ? "bg-slate-200" : "bg-white"}  hover:bg-slate-200`}  onClick={()=>{setcolor(index);setproduct({...product,product_color:item})}} >{item}</button>)}</span></li>
                 </ul>
                 <div className='flex gap-7 items-center' >
-                    <button className='border-2 py-2 px-10 font-medium text-lg rounded-lg bg-yellow-300 text-white hover:bg-yellow-400' >Buy Now</button>
+                    <button className='border-2 py-2 px-10 font-medium text-lg rounded-lg bg-yellow-300 text-white hover:bg-yellow-400' onClick={()=>makePayement(data)} >Buy Now</button>
                     <button className='border-2 py-2 px-10 font-medium text-lg rounded-lg bg-amber-400 text-white hover:bg-amber-500' disabled={disable} onClick={handleCart} >Add to Cart</button>
 
                 </div>

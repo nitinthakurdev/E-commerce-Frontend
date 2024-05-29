@@ -3,7 +3,7 @@ import { useComponentContext } from '../../../../../context'
 import { Link } from 'react-router-dom'
 
 const CartCard = ({data}) => {
-    const {RemoveToCart,disable,updateQty} = useComponentContext()
+    const {RemoveToCart,disable,updateQty,makePayement} = useComponentContext()
     
     return (
         <>
@@ -32,7 +32,7 @@ const CartCard = ({data}) => {
                     </div>
                     <div className=' flex gap-5 py-1 ' >
                         <button className='px-3 py-1 border text-red-500 hover:bg-red-500 hover:text-white rounded-lg ' disabled={disable}  onClick={()=>RemoveToCart(item._id)} > Remove</button>
-                        <button className='px-3 py-1 border text-yellow-500 hover:bg-yellow-500 hover:text-white rounded-lg' >Buy</button>
+                        <button className='px-3 py-1 border text-yellow-500 hover:bg-yellow-500 hover:text-white rounded-lg'disabled={disable} onClick={()=>makePayement(item.product_id)} >Buy Now</button>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ const Description = ({data}) => {
         <div className='py-3 px-2 text-justify max-h-screen overflow-y-scroll ' >
             <div className='text-gray-600 ' >
                 {description?.map((item,index)=>(
-                    <div>
+                    <div key={index}>
                         <p className='flex gap-3 items-center'>
                             <span><GoDotFill /></span>
                             <span>{item}</span>
