@@ -206,6 +206,27 @@ const ComponentContextProvider = ({ children }) => {
         }
     }
 
+
+    const CreateOrder = async (data) => {
+        console.log(data)
+        setDisable(true)
+        const toastId = toast.loading('Loading...');
+        try {
+            const res = await axios.post(`/api/v1/order/create`,data)
+            
+            getAddress()
+            toast.dismiss(toastId);
+            toast.success(res.data.message)
+            window.location.href = "/profile/order"
+        } catch (err) {
+            
+            toast.dismiss(toastId);
+            toast.error(err.response.data.message)
+        } finally {
+            setDisable(false)
+        }
+    }
+
     
 
 
@@ -226,7 +247,7 @@ const ComponentContextProvider = ({ children }) => {
         <ComponentContext.Provider value={{
             reviews, disable, AddToCart, cartData,
             RemoveToCart, updateQty, RemoveCart, makePayement,CheckoutWithCart,
-            CreateAddress,addressData,DeleteAddress
+            CreateAddress,addressData,DeleteAddress,CreateOrder
         }}>
             {children}
         </ComponentContext.Provider>

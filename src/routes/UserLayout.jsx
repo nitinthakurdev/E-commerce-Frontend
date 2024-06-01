@@ -1,13 +1,14 @@
 import React from 'react'
 import Headers from '../features/Main/components/Headers'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Footer from '../features/Main/components/Footer'
 
 const UserLayout = () => {
+  const location = useLocation()
   return (
     <div>
 
-      <Headers />
+      {location.pathname !== "/cancel" && location.pathname !== "/success" && <Headers />}
       <Outlet />
       <Footer />
     </div>

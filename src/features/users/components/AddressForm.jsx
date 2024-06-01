@@ -115,8 +115,6 @@ const AddressForm = ({setShowAddress}) => {
             <button className='text-lg font-medium border-2 px-3 bg-blue-600 text-white py-1 rounded-lg hover:bg-white hover:text-black ' onClick={()=>setShowAddress(false)} >Cancel</button>
 
             </div>
-
-
         </form>
     )
 }

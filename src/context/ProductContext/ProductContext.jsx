@@ -10,6 +10,7 @@ const ProductContextProvider = ({ children }) => {
     const [disabled, setDisabled] = useState(false)
     const [category, setCategory] = useState([])
     const [allProduct, setAllProduct] = useState([])
+    const [order,setOrder] = useState([])
 
     const GetCategory = async () => {
         try {
@@ -119,18 +120,35 @@ const ProductContextProvider = ({ children }) => {
     }
 
 
+    const GetOrderProduct = async(id)=> {
+        try{
+            const res = await axios.get("/api/v1/users/user-get-order")
+            setOrder(res.data.data)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+
 
     useEffect(() => {
         GetCategory()
         GetProduct()
-
+        
     }, [])
+
+    useEffect(()=>{
+        if(AuthorizationToken){
+            GetOrderProduct()
+        }
+    },[AuthorizationToken])
 
 
     return (
         <Productcontext.Provider value={{
             CreateCategory, disabled, category,
             Deletecategory, EditCategory, CreateProduct, allProduct, DeleteProduct
+            ,order
         }} >
             {children}
         </Productcontext.Provider>

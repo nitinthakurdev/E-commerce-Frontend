@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useComponentContext } from '../../../../../context'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-const CartCard = ({data}) => {
+const CartCard = ({data,step}) => {
     const {RemoveToCart,disable,updateQty,makePayement} = useComponentContext()
+    const location = useLocation()
     
     return (
         <>
@@ -21,18 +22,18 @@ const CartCard = ({data}) => {
                         <span className='text-gray-500' >Color : {item.product_color} , Material : {item?.product_id?.product_material}</span>
                         <div className=' flex justify-between'>
                             <span className='text-gray-500' >Qty : {item.product_qty}</span>
-                            <select className='w-36 px-3 border-2 rounded-lg py-1 focus:outline-none' disabled={disable} onChange={(e)=>updateQty(item?._id,e.target.value)} >
+                            {step !== 2 && <select className='w-36 px-3 border-2 rounded-lg py-1 focus:outline-none' disabled={disable} onChange={(e)=>updateQty(item?._id,e.target.value)} >
                                 <option value={1} >Qty : 1</option>
                                 <option value={2}  >Qty : 2</option>
                                 <option value={3}  >Qty : 3</option>
                                 <option value={4}  >Qty : 4</option>
                                 <option value={5}  >Qty : 5</option>
-                            </select>
+                            </select>}
                         </div>
                     </div>
                     <div className=' flex gap-5 py-1 ' >
-                        <button className='px-3 py-1 border text-red-500 hover:bg-red-500 hover:text-white rounded-lg ' disabled={disable}  onClick={()=>RemoveToCart(item._id)} > Remove</button>
-                        <button className='px-3 py-1 border text-yellow-500 hover:bg-yellow-500 hover:text-white rounded-lg'disabled={disable} onClick={()=>makePayement(item.product_id)} >Buy Now</button>
+                       {step !== 2 && <> <button className='px-3 py-1 border text-red-500 hover:bg-red-500 hover:text-white rounded-lg ' disabled={disable}  onClick={()=>RemoveToCart(item._id)} > Remove</button>
+                        <button className='px-3 py-1 border text-yellow-500 hover:bg-yellow-500 hover:text-white rounded-lg'disabled={disable} onClick={()=>makePayement(item.product_id)} >Buy Now</button></>}
                     </div>
                 </div>
             </div>
