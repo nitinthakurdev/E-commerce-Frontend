@@ -4,6 +4,7 @@ import { MdMessage } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillShop } from "react-icons/ai";
 import { useAuthContext, useProductContext } from "../../../context";
+import Search from "./Search";
 
 const Headers = () => {
     const { AuthorizationToken } = useAuthContext()
@@ -18,16 +19,7 @@ const Headers = () => {
                     <Link to="/" >
                         <img src="../brand-logo.png" />
                     </Link>
-                    <div className="border-2 border-blue-500 h-full w-[35%] rounded-md ">
-                        <input
-                            type="text"
-                            className="px-2 h-full w-[75%]  focus:outline-none"
-                            placeholder="Search Product ..."
-                        />
-                        <button className="h-full w-[25%] bg-blue-500 text-white text-lg font-medium ">
-                            Search
-                        </button>
-                    </div>
+                    <Search/>
                     {AuthorizationToken ?
                         <div className="flex items-center justify-center gap-7 text-gray-500 text-lg " >
                             <Link to="/profile" className=" flex flex-col items-center"  >

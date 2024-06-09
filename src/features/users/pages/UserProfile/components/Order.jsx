@@ -24,7 +24,7 @@ const Order = () => {
               <div key={index} >
                 {
                   item?.product?.slice().reverse().map((ite, ind) => {
-                    console.log(ite)
+                    // console.log(ite)
                     const productData = item?.productDetails?.filter((i)=>i._id === ite.productId)[0]
                     // console.log(item.createdAt)
                     const  time = item?.createdAt?.split("T")[0]
@@ -64,7 +64,7 @@ const Order = () => {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="grid grid-cols-5">
+                                <div className="grid grid-cols-7">
                                   <div className="col-span-5 lg:col-span-1 flex items-center max-lg:mt-3">
                                     <div className="flex gap-3 lg:block">
                                       <p className="font-medium text-sm leading-7 text-black">
@@ -82,6 +82,16 @@ const Order = () => {
                                       </p>
                                       <p className="font-medium text-sm leading-6 whitespace-nowrap py-0.5 px-3 rounded-full lg:mt-3 bg-emerald-50 text-emerald-600">
                                        {item?.delivery_status}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="col-span-5 lg:col-span-2 flex items-center max-lg:mt-3 ">
+                                    <div className="flex gap-3 lg:block">
+                                      <p className="font-medium text-sm leading-7 text-black">
+                                        Payement
+                                      </p>
+                                      <p className="font-medium text-sm leading-6 whitespace-nowrap py-0.5 px-3 rounded-full lg:mt-3 bg-emerald-50 text-emerald-600">
+                                       {item?.payement_status} ({item?.payement_method})
                                       </p>
                                     </div>
                                   </div>
