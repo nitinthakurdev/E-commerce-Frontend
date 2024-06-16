@@ -129,6 +129,23 @@ const ProductContextProvider = ({ children }) => {
         }
     }
 
+    const addToWishlist = async (id) => {
+
+        setDisabled(true)
+        const toastId = toast.loading('Loading...');
+        try {
+            const res = await axios.post(`/api/v1/wishlist/create/${id}`)
+            toast.dismiss(toastId);
+            toast.success(res.data.message)
+            // GetProduct()
+        } catch (err) {
+            toast.dismiss(toastId);
+            toast.error(err.response.data.message)
+        } finally {
+            setDisabled(false)
+        }
+    }
+
 
 
     useEffect(() => {
@@ -148,7 +165,7 @@ const ProductContextProvider = ({ children }) => {
         <Productcontext.Provider value={{
             CreateCategory, disabled, category,
             Deletecategory, EditCategory, CreateProduct, allProduct, DeleteProduct
-            ,order
+            ,order,addToWishlist
         }} >
             {children}
         </Productcontext.Provider>

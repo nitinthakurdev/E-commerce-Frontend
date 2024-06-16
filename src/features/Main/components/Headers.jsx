@@ -50,7 +50,7 @@ const Headers = () => {
                         {category?.map((item, index) => {
                             return (
                                 <li key={index} className="px-2 py-1 rounded-md hover:bg-slate-200 cursor-pointer ">
-                                    <Link to="/productlist" className="flex flex-col items-center" >
+                                    <Link to={`/productlist?category=${item?.category_name}`} className="flex flex-col items-center" >
                                         <img src={item?.category_image} className="w-14 h-14 rounded-full" />
                                         <span className="capitalize" >{item?.category_name}</span>
                                     </Link>
